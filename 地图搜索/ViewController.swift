@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     
     
     @IBOutlet weak var mapView: MKMapView!
-//    初始化位置
+//    初始化位置,使用地图经纬度搜索，确定经纬度
     let address = CLLocation(latitude: 28.6882457124, longitude: 115.8468767558)
 //    设置搜索范围4公里
     let searchRadius:CLLocationDistance = 4000
@@ -22,7 +22,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var btnMenu: UIButton!
     @IBAction func btnMenuClick(sender: AnyObject) {
         UIView.animateWithDuration(1, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
-            
+//            设置顺时针旋转方向
             self.btnMenu.transform = CGAffineTransformMakeRotation(0)
 //            对3个按钮进行设置
             self.btnEY.alpha=0.8
@@ -95,8 +95,12 @@ class ViewController: UIViewController {
     func reselt(){
         UIView.animateWithDuration(1, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
             
+            //  设置顺时针旋转方向。3.1415926为圆周率的值，这里代表弧度：这里即为选装0.75＊360的弧度
             self.btnMenu.transform = CGAffineTransformMakeRotation(0.75*3.1415926)
             self.btnEY.alpha=0
+            
+//            CGAffineTransformMakeTranslation每次都是以最初位置的中心点为起始参照
+//            CGAffineTransformMakeScale 缩放比例
             self.btnEY.transform=CGAffineTransformConcat(CGAffineTransformMakeScale(1, 1),CGAffineTransformMakeTranslation(0, 0))
             self.btnLD.alpha=0
             self.btnLD.transform=CGAffineTransformConcat(CGAffineTransformMakeScale(1, 1),CGAffineTransformMakeTranslation(0, 0))
